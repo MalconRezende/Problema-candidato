@@ -5,7 +5,7 @@ using namespace std;
 int main()
 {
     double RAS, RAPS, RAGC, GM, GE;
-    double IPS, ISS, ISGC, MD, GD, IB;
+    double IPS, ISS, ISGC, MD, GD, IB, Impostodevido, Abatimento;
 
     cout << "Renda anual com salario: ";
     cin >> RAS;
@@ -19,7 +19,6 @@ int main()
     cin >> GE;
 
     //CONSOLIDADO DE RENDA
-
     double SM = RAS / 12.0;
 
     if (SM < 3000){
@@ -46,16 +45,30 @@ int main()
 
     //DEDUCOES
 
-    IB = IPS + ISS + ISGC;
+    IB = IPS + ISGC + ISS;
 
     MD = IB * 0.3;
     GD = GM + GE;
-
 
     cout <<endl<< "DEDUCOES" <<endl;
     cout << "Maximo dedutivel: " << MD <<endl;
     cout << "Gastos dedutiveis: " << GD <<endl;
 
+    //RESUMO
+
+    if (GD > MD){
+        Abatimento = MD;
+    }
+    else {
+        Abatimento = GD;
+    }
+
+    Impostodevido = IB - Abatimento;
+
+    cout <<endl<< "RESUMO" <<endl;
+    cout << "Imposto bruto total: " << IB <<endl;
+    cout << "Abatimento: " << Abatimento <<endl;
+    cout << "Imposto devido: " << Impostodevido <<endl;
 
     return 0;
 }
